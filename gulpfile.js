@@ -27,7 +27,7 @@ gulp.task('client', function () {
             return bundler.bundle()
                 .on('error', gUtil.log.bind(gUtil, 'browserify error'))
                 .pipe(source('main.js'))
-                .pipe(gulp.dest('./src/js/main.js'));
+                .pipe(gulp.dest('./src/client/js/'));
         };
     build();
     bundler.on('update', build);
