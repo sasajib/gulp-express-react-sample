@@ -7,11 +7,12 @@ var app = express();
 
 app.use(logger('combined'));
 
-app.use('/', express.static(path.join(__dirname)));
+var rootDir = path.join(__dirname + '/../', 'client');
+app.use('/', express.static(rootDir));
 
 app.get('/', function (request, response) {
     'use strict';
-    response.sendfile('src/client/index.html');
+    response.sendFile('index.html', {root: rootDir});
 });
 
 app.listen(port, function () {
