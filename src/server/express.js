@@ -8,7 +8,10 @@ var app = express();
 app.use(logger('combined'));
 
 var rootDir = path.join(__dirname + '/../', 'client');
+var bowerPath = path.join(__dirname + '/../../', 'bower_components');
+
 app.use('/', express.static(rootDir));
+app.use('/bower_components', express.static(bowerPath));
 
 app.get('/', function (request, response) {
     'use strict';
