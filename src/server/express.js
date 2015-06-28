@@ -1,20 +1,17 @@
-var app = require('express')();
+var express = require('express');
 var logger = require('morgan');
+var path = require('path');
 var port = 3000;
+
+var app = express();
 
 app.use(logger('combined'));
 
+app.use('/', express.static(path.join(__dirname)));
 
 app.get('/', function (request, response) {
     'use strict';
-    response.end('Hello world');
-});
-
-app.get('/name/:userName', function (request, response) {
-    'use strict';
-    response.status(200);
-    response.set('Content-Type', 'text/html');
-    response.end('<h1>Hello  s' + request.params.userName + '</h1>');
+    response.sendfile('src/client/index.html');
 });
 
 app.listen(port, function () {
